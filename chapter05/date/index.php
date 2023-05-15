@@ -12,9 +12,7 @@
 <h1>date関数による日付の取得</h1>
 <?php
 
-
   echo date('Y年m月d日 H:i:s');
-
 ?>
 </body>
 </html>
