@@ -6,6 +6,9 @@
 </head>
 <body>
   <h1>チェックボックスの受信</h1>
+  <?php
+    echo htmlspecialchars($_POST['soft'], ENT_QUOTES, 'utf-8');
+  ?>
 
   <p><a href="./">入力フォームに戻る</a></p>
 </body>

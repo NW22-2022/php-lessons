@@ -29,6 +29,9 @@
 </head>
 <body>
   <h1>配列の中身を確認</h1>
+  <pre>
+    <?php print_r($posts); ?>
+  </pre>
 
 </body>
 </html>

@@ -19,13 +19,7 @@
     <dl>
       <dt><label for="theme">テーマカラーを選択して下さい</label></dt>
       <dd>
-        <select name="theme" id="theme">
-        <?php
-          foreach( $themes as $key => $val  ) {
-            echo '<option value="'. $key .'">'. $val .'</option>';
-          }
-        ?>
-        </select>
+        <textarea name="theme" id="" cols="30" rows="10"></textarea>
       </dd>
     </dl>
     <p><input type="submit" value="送信"></p>

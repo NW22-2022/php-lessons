@@ -1,4 +1,10 @@
 <?php
+  $softs = [
+    'Photoshop',
+    'Illustrator',
+    'XD',
+    'Figma'
+  ];
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +20,16 @@
     <dl>
       <dt>お好きなソフトを選択して下さい。<small>（複数選択可）</small></dt>
       <dd>
-
+        <ul>
+          <?php foreach($softs as $soft) : ?>
+            <li>
+              <label>
+                <input type="checkbox" name="soft" value="<?php echo $soft; ?>">
+                <?php echo $soft; ?>
+              </label>
+            </li>
+          <?php endforeach; ?>
+        </ul>
       </dd>
     </dl>
     <p><input type="submit" value="送信"></p>
