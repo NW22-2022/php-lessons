@@ -24,7 +24,7 @@
           <?php foreach($softs as $soft) : ?>
             <li>
               <label>
-                <input type="checkbox" name="soft" value="<?php echo $soft; ?>">
+                <input type="checkbox" name="soft[]" value="<?php echo $soft; ?>">
                 <?php echo $soft; ?>
               </label>
             </li>
