@@ -1,3 +1,17 @@
+<?php
+  // セッションの開始
+  session_start();
+
+  // $_SESSION['name']が存在していない、または、
+  // $_SESSION['name']が空っぽ。
+  if ( !isset($_SESSION['name']) || empty($_SESSION['name'])  ) {
+    // ログインユーザーではない
+
+    // トップにリダイレクト
+    header('Location: ./');
+    exit();
+  }
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
