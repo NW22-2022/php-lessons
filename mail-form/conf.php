@@ -1,3 +1,12 @@
+<?php
+  // セッションの開始
+  session_start();
+
+  // 味見
+  // echo '<pre>';
+  // print_r($_SESSION);
+  // echo '</pre>';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,15 +18,15 @@
   <dl>
     <dt>お名前</dt>
     <dd>
-
+      <?php echo htmlspecialchars($_SESSION['post']['name'], ENT_QUOTES, 'UTF-8'); ?>
     </dd>
     <dt>メールアドレス</dt>
     <dd>
-
+     <?php echo htmlspecialchars($_SESSION['post']['email'], ENT_QUOTES, 'UTF-8'); ?>
     </dd>
     <dt>お問い合わせ内容</dt>
     <dd>
-
+      <?php echo htmlspecialchars($_SESSION['post']['message'], ENT_QUOTES, 'UTF-8'); ?>
     </dd>
   </dl>
 
