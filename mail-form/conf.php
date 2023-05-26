@@ -2,6 +2,20 @@
   // セッションの開始
   session_start();
 
+
+  // XSS対策
+  //（htmlspecialcharsを短くする関数）
+  function h($s) {
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+  }
+
+  // ダイレクトでアクセスしてきたユーザーにはお帰り頂く
+  if ( empty($_SESSION['post']) ) {
+    header('Location: ./');
+    exit();
+  }
+
+
   // 味見
   // echo '<pre>';
   // print_r($_SESSION);
@@ -18,15 +32,15 @@
   <dl>
     <dt>お名前</dt>
     <dd>
-      <?php echo htmlspecialchars($_SESSION['post']['name'], ENT_QUOTES, 'UTF-8'); ?>
+      <?php echo h($_SESSION['post']['name']); ?>
     </dd>
     <dt>メールアドレス</dt>
     <dd>
-     <?php echo htmlspecialchars($_SESSION['post']['email'], ENT_QUOTES, 'UTF-8'); ?>
+     <?php echo h($_SESSION['post']['email']); ?>
     </dd>
     <dt>お問い合わせ内容</dt>
     <dd>
-      <?php echo htmlspecialchars($_SESSION['post']['message'], ENT_QUOTES, 'UTF-8'); ?>
+      <?php echo nl2br(h($_SESSION['post']['message'])); ?>
     </dd>
   </dl>
 
