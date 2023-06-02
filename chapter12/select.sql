@@ -1,26 +1,35 @@
 -- レコードの抽出
 -- 「posts」テーブルの全レコードを全フィールド抽出
-
+select * from posts;
 
 -- 「posts」テーブルの全レコードを「title」と「content」フィールドのみ抽出
+select title, content from posts;
 
 
 -- 比較演算子を使った抽出
 -- 「posts」テーブルの「created」が 2017年5月以降 のレコードを全フィールド抽出
+select * from posts
+  where created >= "2017-05-01";
 
 
 -- 「posts」テーブルの「user_id」が「3」のレコードを「title」フィールドのみ抽出
+select title from posts
+  where user_id = 3;
 
 
 -- 論理演算子を使った抽出
 -- 「posts」テーブルの「created」が 2017年5月未満 か 2017年7月以降 のレコードを全フィールド抽出
-
+select * from posts
+  where created < "2017-05-01" or created >= "2017-07-01";
 
 -- 「posts」テーブルの「user_id」が「3」または「4」でかつ「created」が 2017年7月以降 のレコードを全フィールド抽出
-
+select * from posts
+  where (user_id = 3 or user_id = 4) and created >= "2017-07-01";
 
 -- その他の演算子を使った抽出
 -- 「posts」テーブルの「created」が 2017年5月 のレコードを全フィールド抽出
+select * from posts
+  where created between "2017-05-01" and "2017-05-31 23:59:59";
 
 
 -- 「posts」テーブルの「user_id」が「2」または「4」または「5」のレコードを全フィールド抽出
