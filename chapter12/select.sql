@@ -33,20 +33,32 @@ select * from posts
 
 
 -- 「posts」テーブルの「user_id」が「2」または「4」または「5」のレコードを全フィールド抽出
+select * from posts
+  where user_id in (2, 4, 5);
 
 
 -- 「posts」テーブルの「content」に「パスタ」という文字列を含むレコードを全フィールド抽出
+select * from posts
+  where content like '%パスタ%';
 
+select * from posts
+  where title like '%！';
 
 -- レコードの並び替え
 -- 「posts」テーブルの「created」が 新しい順 に全レコードを全フィールド抽出
+select * from posts
+  order by created desc;
 
 
 -- 「posts」テーブルの「created」が 新しい順 に全レコードを全フィールド抽出、なお、同じ日付の場合は、id が少ない順に抽出
 
+select * from posts
+  order by created desc, id desc;
+
 
 -- レコード数の制限
 -- 「posts」テーブルの 0件目 から 5件分のレコードを全フィールド抽出
-
+select * from posts limit 5;
 
 -- 「posts」テーブルの 3件目 から 5件分のレコードを全フィールド抽出
+select * from posts limit 2, 5;
