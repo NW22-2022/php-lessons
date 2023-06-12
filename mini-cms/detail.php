@@ -1,0 +1,63 @@
+<?php
+// ファイルの読み込み
+require_once('inc/config.php'); // 設定ファイル
+require_once('inc/functions.php'); // 関数定義ファイル
+
+
+try {
+  // データベースの接続
+  $dbh = new PDO(DSN, DB_USER, DB_PASSWORD); // XAMPPは空
+
+  // SQLのエラーが発生したときに「PDOException」という形の例外を投げる設定
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  // SQL文の作成
+  $sql = 'select * from posts where id = 2';
+
+  // SQLクエリの実行
+  $stmt = $dbh->query($sql);
+
+  // 実行結果を連想配列に変換
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  // 味見
+  echo '<pre>';
+  print_r($result);
+  echo '</pre>';
+
+  // データベースの切断
+  $dbh = null;
+} catch (PDOException $e) {
+  // 例外が発生したときの処理
+  echo 'エラー：' . h($e->getMessage());
+  exit();
+}
+
+
+// echo '接続成功';
+?>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?php echo h($result['title']); ?></title>
+</head>
+
+<body>
+  <h1><?php echo h($result['title']); ?></h1>
+  <ul>
+    <li>公開日： <time datetime="<?php echo h($result['created']); ?>"><?php echo h(date('Y年m月d日', strtotime($result['created']))); ?></time></li>
+    <li>カテゴリー：<?php echo h($result['category_id']); ?></li>
+  </ul>
+  <p>
+    <?php echo h($result['content']); ?>
+  </p>
+  <p>
+    <a href="./">一覧に戻る</a>
+  </p>
+</body>
+
+</html>
