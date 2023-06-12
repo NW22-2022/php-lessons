@@ -4,6 +4,8 @@ require_once('inc/config.php'); // 設定ファイル
 require_once('inc/functions.php'); // 関数定義ファイル
 
 
+
+
 try {
   // データベースの接続
   $dbh = new PDO(DSN, DB_USER, DB_PASSWORD); // XAMPPは空
@@ -12,7 +14,9 @@ try {
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // SQL文の作成
-  $sql = 'select * from posts where id = 2';
+  $sql = 'select p.*, c.category_name
+          from posts as p join categories as c
+          on p.category_id = c.id where p.id = ' . $_GET['id'];
 
   // SQLクエリの実行
   $stmt = $dbh->query($sql);
@@ -50,7 +54,7 @@ try {
   <h1><?php echo h($result['title']); ?></h1>
   <ul>
     <li>公開日： <time datetime="<?php echo h($result['created']); ?>"><?php echo h(date('Y年m月d日', strtotime($result['created']))); ?></time></li>
-    <li>カテゴリー：<?php echo h($result['category_id']); ?></li>
+    <li>カテゴリー：<?php echo h($result['category_name']); ?></li>
   </ul>
   <p>
     <?php echo h($result['content']); ?>
