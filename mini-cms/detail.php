@@ -4,7 +4,11 @@ require_once('inc/config.php'); // 設定ファイル
 require_once('inc/functions.php'); // 関数定義ファイル
 
 
-
+// GETパラメーターがなかったらおかえり頂く
+if (empty($_GET['id'])) {
+  header('Location: ./');
+  exit;
+}
 
 try {
   // データベースの接続
@@ -13,13 +17,22 @@ try {
   // SQLのエラーが発生したときに「PDOException」という形の例外を投げる設定
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  // SQL文の作成
+  // SQL文の作成（変数を埋め込みたいところは「?」を入れておく）
   $sql = 'select p.*, c.category_name
           from posts as p join categories as c
-          on p.category_id = c.id where p.id = ' . $_GET['id'];
+          on p.category_id = c.id where p.id = ?'; // ? はプレースホルダー
+
+  // プリペアドステートメントの作成（テンプレートのようなもの）
+  $stmt = $dbh->prepare($sql); // プレースホルダーを指定したSQLを渡す
+
+  // ?に値をガッチャンコ（SQL文内の「?」の数だけ実行する）
+  $stmt->bindValue(1, (int)$_GET['id'], PDO::PARAM_INT); // 1つめの「?」に数値型のGETパラメータをガッチャンコ
+
+  // ステートメントの実行
+  $stmt->execute();
 
   // SQLクエリの実行
-  $stmt = $dbh->query($sql);
+  // $stmt = $dbh->query($sql);
 
   // 実行結果を連想配列に変換
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
