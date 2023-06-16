@@ -38,9 +38,9 @@ try {
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
   // 味見
-  echo '<pre>';
-  print_r($result);
-  echo '</pre>';
+  // echo '<pre>';
+  // print_r($result);
+  // echo '</pre>';
 
   // データベースの切断
   $dbh = null;
