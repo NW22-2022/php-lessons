@@ -3,6 +3,13 @@
 require_once('../inc/config.php');
 require_once('../inc/functions.php');
 
+
+// ダイレクトでこのページに来た方にはお帰り頂く
+if () {
+
+}
+
+
 try {
   // DBの接続
   $dbh = new PDO(DSN, DB_USER, DB_PASSWORD);
