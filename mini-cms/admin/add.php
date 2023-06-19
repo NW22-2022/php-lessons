@@ -5,8 +5,10 @@ require_once('../inc/functions.php');
 
 
 // ダイレクトでこのページに来た方にはお帰り頂く
-if () {
-
+// httpリクエストのメソッドが POST以外
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  header('Location: ./');
+  exit;
 }
 
 

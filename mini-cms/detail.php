@@ -70,7 +70,7 @@ try {
     <li>カテゴリー：<?php echo h($result['category_name']); ?></li>
   </ul>
   <p>
-    <?php echo h($result['content']); ?>
+    <?php echo nl2br(h($result['content'])); ?>
   </p>
   <p>
     <a href="./">一覧に戻る</a>
