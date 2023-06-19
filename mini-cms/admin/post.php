@@ -22,9 +22,9 @@ try {
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   // 味見
-  echo '<pre>';
-  print_r($result);
-  echo '</pre>';
+  // echo '<pre>';
+  // print_r($result);
+  // echo '</pre>';
 
   // データベースの切断
 
@@ -51,9 +51,13 @@ try {
       <dd>
         <input type="text" id="title" name="title">
       </dd>
-      <dt><label for="category_id">カテゴリーID</label></dt>
+      <dt><label for="category_id">カテゴリー</label></dt>
       <dd>
-        <input type="text" id="category_id" name="category_id">
+        <select name="category_id" id="category_id">
+          <?php foreach ($result as $row) : ?>
+            <option value="<?php echo h($row['id']); ?>"><?php echo h($row['category_name']); ?></option>
+          <?php endforeach; ?>
+        </select>
       </dd>
       <dt><label for="content">記事の内容</label></dt>
       <dd>
