@@ -1,26 +1,37 @@
 <?php
 // ファイルの読み込み（DBの設定ファイル、関数定義ファイル）
+require_once('../inc/config.php');
+require_once('../inc/functions.php');
 
 
 try {
   // データベースの接続
+  $dbh = new PDO(DSN, DB_USER, DB_PASSWORD);
 
   // SQLのエラーがあったら例外を投げる設定
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
   // SQL文の作成（categoriesテーブルの全レコード）
+  $sql = 'select * from categories';
 
   // SQLクエリの実行
+  $stmt = $dbh->query($sql);
 
   // 実行結果を連想配列に格納
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   // 味見
+  echo '<pre>';
+  print_r($result);
+  echo '</pre>';
 
   // データベースの切断
 
-} catch() {
+} catch (PDOException $e) {
   // 例外があった時
   // エラーメッセージを出して処理終了
-
+  echo 'エラー' . h($e->getMessage());
 }
 
 ?>
